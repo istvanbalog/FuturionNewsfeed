@@ -11,6 +11,7 @@ namespace FuturionNewsfeed.Models
         public int Id { get; set; }
 
         [Display(Name = "Megjegyzés szövege")]
+        [StringLength(200, ErrorMessage = "A szöveg hosszának 10 és 200 karakter között kell lennie.", MinimumLength = 10)]
         public string Text { get; set; }
 
         [DataType(DataType.DateTime)]

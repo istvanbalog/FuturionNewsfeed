@@ -13,6 +13,7 @@
     <a asp-page="Create">Új hír felvétele</a>
     }
 </p>
+<hr />
 
 @*<table class="table">
         <thead>
@@ -60,18 +61,20 @@
 @foreach (var item in Model.NewsItem.Reverse())
 {
 <div>
-    <a asp-page="./Details" asp-route-id="@item.Id">
-        <h3><b>@Html.DisplayFor(m => item.Title)</b></h3>
-        <h4>@Html.DisplayFor(m => item.ShortenedText)...</h4>
+    
+        <h3>&gt;&gt;<b>@Html.DisplayFor(m => item.Title)</b></h3>
+        <h4>&emsp;&emsp;@Html.DisplayFor(m => item.ShortenedText)...</h4>
         <span>
             <i>
-                Létrehozó: @Html.DisplayFor(m => item.CreatorUsername)<br />
-                Létrehozás dátuma: @Html.DisplayFor(m => item.CreationDateTime)<br />
-                Megjegyzések: @Html.DisplayFor(m => item.NumberOfComments)
+                &emsp;&emsp;&emsp;Létrehozó: @Html.DisplayFor(m => item.CreatorUsername)<br />
+                &emsp;&emsp;&emsp;Létrehozás dátuma: @Html.DisplayFor(m => item.CreationDateTime)<br />
+                &emsp;&emsp;&emsp;Megjegyzések: @Html.DisplayFor(m => item.NumberOfComments)<br />
             </i>
-        </span>
-    </a>
+        </span><br />
+        <a asp-page="./Details" asp-route-id="@item.Id">
+    Hír megtekintése
+            </a><br />
 </div>
-<span><b><font color="green">____________________________________________________</font></b></span>
+<hr/>
 
 }
