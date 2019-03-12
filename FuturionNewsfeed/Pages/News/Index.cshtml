@@ -2,53 +2,73 @@
 @model FuturionNewsfeed.Pages.News.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Hírfolyam";
 }
 
-<h2>Index</h2>
+<h2>Hírfolyam</h2>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Új hír felvétele</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.NewsItem[0].Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NewsItem[0].Text)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NewsItem[0].CreationDateTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NewsItem[0].CreatorUsername)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.NewsItem) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatorUsername)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+
+@*<table class="table">
+        <thead>
+            <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NewsItem[0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NewsItem[0].Text)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NewsItem[0].CreationDateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NewsItem[0].CreatorUsername)
+                    </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.NewsItem) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatorUsername)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+
+@foreach (var item in Model.NewsItem.Reverse())
+{
+<div>
+    <a asp-page="./Details" asp-route-id="@item.Id">
+        <h3><b>@Html.DisplayFor(m => item.Title)</b></h3>
+        <h4>@Html.DisplayFor(m => item.ShortenedText). ...</h4>
+        <span>
+            <i>
+                Létrehozó: @Html.DisplayFor(m => item.CreatorUsername)<br />
+                Létrehozás dátuma: @Html.DisplayFor(m => item.CreationDateTime)<br />
+                Megjegyzések: @Html.DisplayFor(m => item.NumberOfComments)
+            </i>
+        </span>
+    </a>
+</div>
+<span><b><font color="green">____________________________________________________</font></b></span>
+
 }
-    </tbody>
-</table>

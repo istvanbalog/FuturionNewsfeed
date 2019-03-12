@@ -30,8 +30,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/News/Index">News</a></li>
+                    @*<li><a asp-page="/Index">Home</a></li>*@
+                    <li><a asp-page="/News/Index">Hírfolyam</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -41,7 +41,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>Copyright &copy; @DateTime.Now.Year - Futurion Newsfeed. All rights reserved.</p>
+            <p>Copyright &copy; @DateTime.Now.Year - Futurion Newsfeed. Minden jog fenntartva.</p>
         </footer>
     </div>
 

@@ -28,6 +28,7 @@ namespace FuturionNewsfeed.Pages.Account.Manage
             _emailSender = emailSender;
         }
 
+        [Display(Name = "Felhasználónév")]
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -45,7 +46,7 @@ namespace FuturionNewsfeed.Pages.Account.Manage
             public string Email { get; set; }
 
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Telefonszám")]
             public string PhoneNumber { get; set; }
         }
 
@@ -101,7 +102,7 @@ namespace FuturionNewsfeed.Pages.Account.Manage
                 }
             }
 
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "A profilod sikeresen frissült.";
             return RedirectToPage();
         }
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
@@ -121,7 +122,7 @@ namespace FuturionNewsfeed.Pages.Account.Manage
             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
             await _emailSender.SendEmailConfirmationAsync(user.Email, callbackUrl);
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "A megerõsítõ email elküldve. Ellenõrizd az email fiókod!";
             return RedirectToPage();
         }
     }

@@ -6,16 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using FuturionNewsfeed.Data;
 using FuturionNewsfeed.Models;
 
 namespace FuturionNewsfeed.Pages.News
 {
     public class EditModel : PageModel
     {
-        private readonly FuturionNewsfeed.Data.ApplicationDbContext _context;
+        private readonly FuturionNewsfeed.Models.FuturionNewsfeedContext _context;
 
-        public EditModel(FuturionNewsfeed.Data.ApplicationDbContext context)
+        public EditModel(FuturionNewsfeed.Models.FuturionNewsfeedContext context)
         {
             _context = context;
         }

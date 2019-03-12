@@ -36,16 +36,19 @@ namespace FuturionNewsfeed.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "Felhasználónév")]
             public string Username { get; set; }
 
             [EmailAddress]
+            [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
+            [Display(Name = "Jelszó")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Bejelentkezve maradok")]
             public bool RememberMe { get; set; }
         }
 

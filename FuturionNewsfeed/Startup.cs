@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,6 +46,9 @@ namespace FuturionNewsfeed
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
             services.AddSingleton<IEmailSender, EmailSender>();
+
+            services.AddDbContext<FuturionNewsfeedContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("FuturionNewsfeedContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

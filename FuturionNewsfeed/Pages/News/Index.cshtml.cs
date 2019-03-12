@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FuturionNewsfeed.Data;
 using FuturionNewsfeed.Models;
 
 namespace FuturionNewsfeed.Pages.News
 {
     public class IndexModel : PageModel
     {
-        private readonly FuturionNewsfeed.Data.ApplicationDbContext _context;
+        private readonly FuturionNewsfeed.Models.FuturionNewsfeedContext _context;
 
-        public IndexModel(FuturionNewsfeed.Data.ApplicationDbContext context)
+        public IndexModel(FuturionNewsfeed.Models.FuturionNewsfeedContext context)
         {
             _context = context;
         }
@@ -24,6 +23,7 @@ namespace FuturionNewsfeed.Pages.News
         public async Task OnGetAsync()
         {
             NewsItem = await _context.NewsItem.ToListAsync();
+            _context.NewsItem.Include("Comments");
         }
     }
 }

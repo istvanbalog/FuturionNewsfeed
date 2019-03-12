@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using FuturionNewsfeed.Data;
 using FuturionNewsfeed.Models;
 
 namespace FuturionNewsfeed.Pages.News
 {
     public class CreateModel : PageModel
     {
-        private readonly FuturionNewsfeed.Data.ApplicationDbContext _context;
+        private readonly FuturionNewsfeed.Models.FuturionNewsfeedContext _context;
 
-        public CreateModel(FuturionNewsfeed.Data.ApplicationDbContext context)
+        public CreateModel(FuturionNewsfeed.Models.FuturionNewsfeedContext context)
         {
             _context = context;
         }
@@ -33,6 +32,9 @@ namespace FuturionNewsfeed.Pages.News
             {
                 return Page();
             }
+
+            NewsItem.CreationDateTime = DateTime.Now;
+            NewsItem.CreatorUsername = User.Identity.Name;
 
             _context.NewsItem.Add(NewsItem);
             await _context.SaveChangesAsync();

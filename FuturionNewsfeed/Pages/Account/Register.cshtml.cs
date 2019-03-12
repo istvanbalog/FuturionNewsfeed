@@ -39,7 +39,7 @@ namespace FuturionNewsfeed.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Username")]
+            [Display(Name = "Felhasználónév")]
             public string Username { get; set; }
 
             [Required]
@@ -48,14 +48,14 @@ namespace FuturionNewsfeed.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "A jelszónak legalább {2} és legfeljebb {1} karaktert kell tartalmaznia.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Jelszó")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Jelszó újra")]
+            [Compare("Password", ErrorMessage = "A két megadott jelszó nem egyezik meg.")]
             public string ConfirmPassword { get; set; }
         }
 

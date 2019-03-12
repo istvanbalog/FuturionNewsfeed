@@ -2,14 +2,12 @@
 @model FuturionNewsfeed.Pages.News.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Hír részletei";
 }
 
-<h2>Details</h2>
+<h2>Hír részletei</h2>
 
 <div>
-    <h4>NewsItem</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.NewsItem.Title)
@@ -37,7 +35,58 @@
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.NewsItem.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    @if (Model.NewsItem.Comments != null)
+    {
+        <h4>Megjegyzések</h4>
+        @foreach (var a in Model.NewsItem.Comments)
+        {
+            <span>@a.Text</span><br />
+            <span>@a.CreatorUsername</span><br />
+            <span>@a.CreationDateTime</span><br />
+            <hr />
+        }
+    }
+    else
+    {
+        <span><font color="darkred">Ehhez a hírhez nem található egyetlen megjegyzés sem.</font></span>
+    }
+</div>
+
+<h2>Új megjegyzés felvétele</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Comment.Text" class="control-label"></label>
+                <input asp-for="Comment.Text" class="form-control" />
+                <span asp-validation-for="Comment.Text" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="NewsItem.Text" class="control-label"></label>
+                <textarea asp-for="NewsItem.Text" class="form-control" rows="10" cols="50"></textarea>
+                <span asp-validation-for="NewsItem.Text" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                    <label asp-for="NewsItem.CreationDateTime" class="control-label"></label>
+                    <input asp-for="NewsItem.CreationDateTime" class="form-control" />
+                    <span asp-validation-for="NewsItem.CreationDateTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewsItem.CreatorUsername" class="control-label"></label>
+                    <input asp-for="NewsItem.CreatorUsername" class="form-control" />
+                    <span asp-validation-for="NewsItem.CreatorUsername" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <input type="submit" value="Beküldés" class="btn btn-default" asp-route-id="@Model.NewsItem.Id" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @*<a asp-page="./Edit" asp-route-id="@Model.NewsItem.Id">Szerkesztés</a> |*@
+    <a asp-page="./Index">Vissza a hírfolyamhoz</a>
 </div>

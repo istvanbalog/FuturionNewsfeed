@@ -9,9 +9,9 @@ namespace FuturionNewsfeed.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            return Redirect("News");
         }
     }
 }

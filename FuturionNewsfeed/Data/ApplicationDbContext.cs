@@ -22,9 +22,5 @@ namespace FuturionNewsfeed.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-
-        public DbSet<FuturionNewsfeed.Models.NewsItem> NewsItem { get; set; }
-
-        public DbSet<FuturionNewsfeed.Models.Comment> Comment { get; set; }
     }
 }
