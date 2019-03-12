@@ -31,6 +31,7 @@ namespace FuturionNewsfeed.Pages.News
             }
 
             NewsItem = await _context.NewsItem.SingleOrDefaultAsync(m => m.Id == id);
+            _context.NewsItem.Include(x => x.Comments).Load();
 
             if (NewsItem == null)
             {
@@ -61,7 +62,8 @@ namespace FuturionNewsfeed.Pages.News
             NewsItem.Comments.Add(Comment);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            //return RedirectToPage("./Index");
+            return Redirect($"Details?id={id}");
         }
     }
 }

@@ -8,7 +8,10 @@
 <h2>Hírfolyam</h2>
 
 <p>
+    @if (User.Identity.IsAuthenticated)
+    {
     <a asp-page="Create">Új hír felvétele</a>
+    }
 </p>
 
 @*<table class="table">
@@ -59,7 +62,7 @@
 <div>
     <a asp-page="./Details" asp-route-id="@item.Id">
         <h3><b>@Html.DisplayFor(m => item.Title)</b></h3>
-        <h4>@Html.DisplayFor(m => item.ShortenedText). ...</h4>
+        <h4>@Html.DisplayFor(m => item.ShortenedText)...</h4>
         <span>
             <i>
                 Létrehozó: @Html.DisplayFor(m => item.CreatorUsername)<br />

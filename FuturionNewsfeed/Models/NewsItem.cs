@@ -23,6 +23,6 @@ namespace FuturionNewsfeed.Models
         [DisplayName("Megjegyzések")]
         public ICollection<Comment> Comments { get; set; }
         public int NumberOfComments => (Comments != null) ? Comments.Count : 0;
-        public string ShortenedText => (Text.Length <= 40) ? Text : Text.Substring(0, 40);
+        public string ShortenedText => (Text.Length <= 80) ? Text : Text.Substring(0, 80);
     }
 }

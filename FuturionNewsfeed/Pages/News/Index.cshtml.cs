@@ -22,8 +22,8 @@ namespace FuturionNewsfeed.Pages.News
 
         public async Task OnGetAsync()
         {
+            _context.NewsItem.Include(x => x.Comments).Load();
             NewsItem = await _context.NewsItem.ToListAsync();
-            _context.NewsItem.Include("Comments");
         }
     }
 }

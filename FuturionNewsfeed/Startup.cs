@@ -41,6 +41,9 @@ namespace FuturionNewsfeed
                 {
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
+                    options.Conventions.AuthorizePage("/News/Create");
+                    options.Conventions.AuthorizePage("/News/Delete");
+                    options.Conventions.AuthorizePage("/News/Edit");
                 });
 
             // Register no-op EmailSender used by account confirmation and password reset during development
