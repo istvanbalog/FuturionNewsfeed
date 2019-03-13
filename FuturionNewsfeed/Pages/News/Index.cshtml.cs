@@ -18,12 +18,23 @@ namespace FuturionNewsfeed.Pages.News
             _context = context;
         }
 
-        public IList<NewsItem> NewsItem { get;set; }
+        public IList<NewsItem> NewsItem { get; set; }
 
         public async Task OnGetAsync()
         {
             _context.NewsItem.Include(x => x.Comments).Load();
             NewsItem = await _context.NewsItem.ToListAsync();
+        }
+
+        public async Task<PartialViewResult> OnGetNewsPartialAsync()
+        {
+            _context.NewsItem.Include(x => x.Comments).Load();
+            NewsItem = await _context.NewsItem.ToListAsync();
+
+            return new PartialViewResult()
+            {
+                ViewName = "_Newsfeed"
+            };
         }
     }
 }

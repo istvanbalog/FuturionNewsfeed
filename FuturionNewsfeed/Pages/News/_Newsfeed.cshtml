@@ -1,0 +1,20 @@
+﻿@model FuturionNewsfeed.Pages.News.IndexModel
+@foreach (var item in Model.NewsItem.Reverse())
+{
+    <div>
+
+        <h3>&gt;&gt;<b>@Html.DisplayFor(m => item.Title)</b></h3>
+        <h4>&emsp;&emsp;@Html.DisplayFor(m => item.ShortenedText)...</h4>
+        <span>
+            <i>
+                &emsp;&emsp;&emsp;Létrehozó: @Html.DisplayFor(m => item.CreatorUsername)<br />
+                &emsp;&emsp;&emsp;Létrehozás dátuma: @Html.DisplayFor(m => item.CreationDateTime)<br />
+                &emsp;&emsp;&emsp;Megjegyzések: @Html.DisplayFor(m => item.NumberOfComments)<br />
+            </i>
+        </span><br />
+        <a asp-page="./Details" asp-route-id="@item.Id">
+            Hír megtekintése
+        </a><br />
+    </div>
+    <hr />
+}

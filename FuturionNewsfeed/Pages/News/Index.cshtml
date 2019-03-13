@@ -5,33 +5,33 @@
     ViewData["Title"] = "Hírfolyam";
 }
 
+@*@section Scripts
+    {
+<script>
+    function refreshNews() {
+        //$('#load').on('click', function () {
+        //    $('#_newsfeed').load('/Index?handler=CarPartial');
+        //});
+        console.log("teszt");
+        $('#_newsfeed').load('/Index?handler=NewsPartial');
+        setTimeout(refreshNews, 5000);
+    }
+
+    refreshNews();
+</script>
+}*@
+
 <h2>Hírfolyam</h2>
 
 <p>
     @if (User.Identity.IsAuthenticated)
     {
-    <a asp-page="Create">Új hír felvétele</a>
+        <a asp-page="Create">Új hír felvétele</a>
     }
 </p>
 <hr />
 
-@foreach (var item in Model.NewsItem.Reverse())
-{
-<div>
-    
-        <h3>&gt;&gt;<b>@Html.DisplayFor(m => item.Title)</b></h3>
-        <h4>&emsp;&emsp;@Html.DisplayFor(m => item.ShortenedText)...</h4>
-        <span>
-            <i>
-                &emsp;&emsp;&emsp;Létrehozó: @Html.DisplayFor(m => item.CreatorUsername)<br />
-                &emsp;&emsp;&emsp;Létrehozás dátuma: @Html.DisplayFor(m => item.CreationDateTime)<br />
-                &emsp;&emsp;&emsp;Megjegyzések: @Html.DisplayFor(m => item.NumberOfComments)<br />
-            </i>
-        </span><br />
-        <a asp-page="./Details" asp-route-id="@item.Id">
-    Hír megtekintése
-            </a><br />
+<div id="_newsfeed">
+    @Html.Partial("_Newsfeed", Model)
 </div>
-<hr/>
 
-}
